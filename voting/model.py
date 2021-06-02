@@ -82,8 +82,8 @@ logger.error("recall")
 from sklearn.metrics import recall_score
 
 logger.error("recall",recall_score(y_test40, p_vot, average='weighted')
-
-logger.error("f1-score")
+         
+             
 from sklearn.metrics import f1_score
 
 logger.error("F1-score",f1_score(y_test40, p_vot, average='weighted'))
