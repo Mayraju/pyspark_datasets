@@ -9,11 +9,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn import tree
 from sklearn.svm import SVC
+import logging
+
 
 
 dataset = "/opt/dkube/dataset"
 
 df = pd.read_csv(dataset+'/train_data_1.csv',sep=',')
+logger=logging.getLogger()
+logger.error("#### starting point")
 
 
 
@@ -39,10 +43,10 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt   
 
-print("vot")
+logger.error("######### vot")
 labels = ['attack', 'normal']
 cm = confusion_matrix(y_test40, p_vot, labels)
-print(cm)
+logger.error(cm)
 fig = plt.figure()
 ax = fig.add_subplot(111)
 cax = ax.matshow(cm)
@@ -54,26 +58,32 @@ plt.xlabel('Predicted')
 plt.ylabel('True')
 plt.show()
 
-print("accuracy")
+logger.error("accuracy")
 from sklearn.metrics import accuracy_score
-print(accuracy_score(y_test40, p_vot))
+accu = accuracy_score(y_test40, p_vot)
+logger.error("accuracy",accu)
 
 print("precision")
 from sklearn.metrics import precision_score
-print(precision_score(y_test40, p_vot, average='macro'))
-print(precision_score(y_test40, p_vot, average='micro'))
-print(precision_score(y_test40, p_vot, average='weighted'))
+prec_macro = precision_score(y_test40, p_vot, average='macro')
 
-print("recall")
+logger.error("prec_macro",prec_macro)
+
+prec_micro = precision_score(y_test40, p_vot, average='micro')
+
+logger.error("precision", prec_micro)
+
+prec_weighted = precision_score(y_test40, p_vot, average='weighted')
+
+logger.error("prcision",prec_weighted)
+
+logger.error("recall")
 
 from sklearn.metrics import recall_score
 
-print(recall_score(y_test40, p_vot, average='macro'))
-print(recall_score(y_test40, p_vot, average='micro'))
-print(recall_score(y_test40, p_vot, average='weighted'))
+logger.error("recall",recall_score(y_test40, p_vot, average='weighted')
 
-print("f1-score")
+logger.error("f1-score")
 from sklearn.metrics import f1_score
-print(f1_score(y_test40, p_vot, average='macro'))
-print(f1_score(y_test40, p_vot, average='micro'))
-print(f1_score(y_test40, p_vot, average='weighted'))
+
+logger.error("F1-score",f1_score(y_test40, p_vot, average='weighted'))
