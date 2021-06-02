@@ -13,7 +13,7 @@ from sklearn.svm import SVC
 
 dataset = "/opt/dkube/dataset"
 
-df = pd.read_csv(dataset+'train_data_1.csv',sep=',')
+df = pd.read_csv(dataset+'/train_data_1.csv',sep=',')
 
 
 
