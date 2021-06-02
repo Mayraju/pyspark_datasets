@@ -26,7 +26,7 @@ dataset = "/opt/dkube/dataset"
 
 df = pd.read_csv(dataset+'/train_data_1.csv',sep=',')
 logger=logging.getLogger()
-logger.error("#### starting point")
+logger.error("#### starting point_CAD")
 
 
 
