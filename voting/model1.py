@@ -32,7 +32,7 @@ logger.error("#### starting point")
 
 X = df.drop(['label'],axis=1).values  
 y = df['label'].values
-X_train60,X_test40,y_train60,y_test40 = train_test_split(X,y,test_size=0.30,random_state=32)
+X_train60,X_test40,y_train60,y_test40 = train_test_split(X,y,test_size=0.40,random_state=32)
 #X_train70,X_test30,y_train70,y_test30 = train_test_split(X, y, test_size=0.30, random_state=42)
 #X_train80,X_test20,y_train80,y_test20 = train_test_split(X,y,test_size=20,random_state=52)
 #X_train90,X_test10,y_train90,y_test10 = train_test_split(X,y,test_size=10,random_state=42)
@@ -42,7 +42,7 @@ clf3 = GradientBoostingClassifier(n_estimators=100, learning_rate=1.0,max_depth=
 clf4 = tree.DecisionTreeClassifier()
 clf5 = SVC(kernel='rbf', probability=True)
 
-eclf = VotingClassifier(estimators=[('lr', clf1), ('rf', clf2), ('gba', clf3),('dt',clf4),('svm',clf5)],voting='soft',weights=[0.1,0.2,0.3,0.1,0.3])
+eclf = VotingClassifier(estimators=[('lr', clf1), ('rf', clf2), ('gba', clf3),('dt',clf4),('svm',clf5)],voting='soft',weights=[0.3,0.1,0.2,0.3,0.1])
 
 logger.error("#############voting classifier")
 vot = eclf.fit(X_train60,y_train60)
