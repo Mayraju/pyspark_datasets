@@ -9,7 +9,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn import tree
 from sklearn.svm import SVC
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.metrics import f1_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import precision_score
 import logging
+
 
 
 
@@ -35,13 +42,12 @@ clf5 = SVC(kernel='rbf', probability=True)
 
 eclf = VotingClassifier(estimators=[('lr', clf1), ('rf', clf2), ('gba', clf3),('dt',clf4),('svm',clf5)],voting='soft',weights=[0.1,0.2,0.3,0.1,0.3])
 
-print("voting classifier")
+logger.error("#############voting classifier")
 vot = eclf.fit(X_train60,y_train60)
+logger.error("############## after fit")
 p_vot = vot.predict(X_test40)
 
-from sklearn.metrics import confusion_matrix
-import seaborn as sns
-import matplotlib.pyplot as plt   
+ 
 
 logger.error("######### vot")
 labels = ['attack', 'normal']
@@ -63,8 +69,8 @@ from sklearn.metrics import accuracy_score
 accu = accuracy_score(y_test40, p_vot)
 logger.error("accuracy",accu)
 
-print("precision")
-from sklearn.metrics import precision_score
+logger.error("precision")
+
 prec_macro = precision_score(y_test40, p_vot, average='macro')
 
 logger.error("prec_macro",prec_macro)
@@ -79,11 +85,6 @@ logger.error("prcision",prec_weighted)
 
 logger.error("recall")
 
-from sklearn.metrics import recall_score
-
-logger.error("recall",recall_score(y_test40, p_vot, average='weighted')
-         
-             
-from sklearn.metrics import f1_score
+logger.error("recall",recall_score(y_test40, p_vot, average='weighted'))            
 
 logger.error("F1-score",f1_score(y_test40, p_vot, average='weighted'))
